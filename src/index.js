@@ -5,7 +5,7 @@ import SpeedRate from './SpeedRate.js';
 
 // Отвечает является ли карта уткой.
 function isDuck(card) {
-    return card && card.quacks && card.swims;
+    return card instanceof Duck;
 }
 
 // Отвечает является ли карта собакой.
@@ -13,7 +13,7 @@ function isDog(card) {
     return card instanceof Dog;
 }
 
-// Дает описание существа по схожести с утками и собаками
+
 function getCreatureDescription(card) {
     if (isDuck(card) && isDog(card)) {
         return 'Утка-Собака';
@@ -27,26 +27,14 @@ function getCreatureDescription(card) {
     return 'Существо';
 }
 
+
 class Creature extends Card {
     constructor(name, strength) {
         super(name, strength);
     }
 
-    getCreatureDescription(card) {
-        if (isDuck(card) && isDog(card)) {
-            return 'Утка-Собака';
-        }
-        if (isDuck(card)) {
-            return 'Утка';
-        }
-        if (isDog(card)) {
-            return 'Собака';
-        }
-        return 'Существо';
-    }
-
     getDescriptions() {
-        return [getCreatureDescription(), ...super.getDescriptions()]
+        return [getCreatureDescription(this), ...super.getDescriptions()]
     }
 }
 
