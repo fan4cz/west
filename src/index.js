@@ -27,13 +27,32 @@ function getCreatureDescription(card) {
     return 'Существо';
 }
 
+class Duck extends Card {
+
+    constructor(name = 'Мирная утра', strength = 2) {
+        super(name, strength);
+    }
+
+    quacks() {
+        console.log('quack')
+    }
+
+    swims() {
+        console.log('float: both;')
+    }
+}
+
+
+// Основа для собаки.
+function Dog() {
+}
 
 
 // Колода Шерифа, нижнего игрока.
 const seriffStartDeck = [
-    new Card('Мирный житель', 2),
-    new Card('Мирный житель', 2),
-    new Card('Мирный житель', 2),
+    new Duck(),
+    new Duck(),
+    new Duck()
 ];
 
 // Колода Бандита, верхнего игрока.
