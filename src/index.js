@@ -33,17 +33,17 @@ class Creature extends Card {
     }    
     
     getCreatureDescription(card) {
-    if (isDuck(card) && isDog(card)) {
-        return 'Утка-Собака';
+        if (isDuck(card) && isDog(card)) {
+            return 'Утка-Собака';
+        }
+        if (isDuck(card)) {
+            return 'Утка';
+        }
+        if (isDog(card)) {
+            return 'Собака';
+        }
+        return 'Существо';
     }
-    if (isDuck(card)) {
-        return 'Утка';
-    }
-    if (isDog(card)) {
-        return 'Собака';
-    }
-    return 'Существо';
-}
 }
 
 class Duck extends Creature {
@@ -64,6 +64,12 @@ class Duck extends Creature {
 class Dog extends Creature {
     constructor(name = 'Пес-бандит', power = 3) {
         super(name, power);        
+    }
+}
+
+class Trasher extends Dog {
+    constructor(name = 'Громила', power = 5) {
+        super(name, power);
     }
 }
 
