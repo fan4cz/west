@@ -59,6 +59,20 @@ class Dog extends Creature {
     }
 }
 
+class PseudoDuck extends Dog {
+    constructor() {
+        super('Псевдоутка', 3);
+    }
+
+    quacks() {
+        console.log('quack');
+    }
+
+    swims() {
+        console.log('float: both;');
+    }
+}
+
 class Trasher extends Dog {
     constructor(name = 'Громила', power = 5) {
         super(name, power);
@@ -149,15 +163,14 @@ class Lad extends Dog {
 }
 
 const seriffStartDeck = [
-    new Duck(),
+    new PseudoDuck(),
     new Lad(),
     new Gatling(),
 ];
 
 const banditStartDeck = [
     new Trasher(),
-    new Dog(),
-    new Dog(),
+    new Dog()
 ];
 
 // Создание игры.
