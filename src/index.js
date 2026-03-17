@@ -75,6 +75,10 @@ class Trasher extends Dog {
     constructor(name = 'Громила', power = 5) {
         super(name, power);
     }
+
+    modifyTakenDamage(value, fromCard, gameContext, continuation) {
+        super.modifyTakenDamage(value - 1, fromCard, gameContext, continuation);
+    }
 }
 
 // Колода Шерифа, нижнего игрока.
@@ -86,7 +90,8 @@ const seriffStartDeck = [
 
 // Колода Бандита, верхнего игрока.
 const banditStartDeck = [
-    new Dog()
+    new Dog(),
+    new Trasher()
 ];
 
 
