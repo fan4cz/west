@@ -42,11 +42,11 @@ class Duck extends Card {
     }
 }
 
-
-// Основа для собаки.
-function Dog() {
+class Dog extends Card {
+    constructor(name = 'Пес-бандит', power = 3) {
+        super(name, power);        
+    }
 }
-
 
 // Колода Шерифа, нижнего игрока.
 const seriffStartDeck = [
@@ -57,7 +57,7 @@ const seriffStartDeck = [
 
 // Колода Бандита, верхнего игрока.
 const banditStartDeck = [
-    new Dog(),
+    new Dog()
 ];
 
 
@@ -71,10 +71,3 @@ SpeedRate.set(1);
 game.play(false, (winner) => {
     alert('Победил ' + winner.name);
 });
-
-
-class Dog extends Card {
-    constructor(name = 'Пес-бандит', power = 3) {
-        super(name, power);        
-    }
-}
