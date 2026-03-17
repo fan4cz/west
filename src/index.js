@@ -30,8 +30,8 @@ function getCreatureDescription(card) {
 class Creature extends Card {
     constructor(name, strength) {
         super(name, strength);
-    }    
-    
+    }
+
     getCreatureDescription(card) {
         if (isDuck(card) && isDog(card)) {
             return 'Утка-Собака';
@@ -43,6 +43,10 @@ class Creature extends Card {
             return 'Собака';
         }
         return 'Существо';
+    }
+
+    getDescriptions() {
+        return [getCreatureDescription(), ...super.getDescriptions()]
     }
 }
 
@@ -63,7 +67,7 @@ class Duck extends Creature {
 
 class Dog extends Creature {
     constructor(name = 'Пес-бандит', power = 3) {
-        super(name, power);        
+        super(name, power);
     }
 }
 
