@@ -72,20 +72,20 @@ class Trasher extends Dog {
     }
 
     getDescriptions() {
-        return ['Уменьшает входящий урон на 1', ...super.getDescriptions()];
+        return ['Защита 1', ...super.getDescriptions()];
     }
 }
 
 class Gatling extends Creature {
     constructor(name = 'Гатлинг', power = 6) {
-        super(name, power); 
+        super(name, power);
     }
 
     attack(gameContext, continuation) {
         const taskQueue = new TaskQueue();
 
-        const {currentPlayer, oppositePlayer, position, updateView} = gameContext;
-        
+        const { currentPlayer, oppositePlayer, position, updateView } = gameContext;
+
         for (let i = 0; i < oppositePlayer.table.length; i++) {
             taskQueue.push(onDone => this.view.showAttack(onDone));
             taskQueue.push(onDone => {
@@ -100,15 +100,19 @@ class Gatling extends Creature {
         }
         taskQueue.continueWith(continuation);
     }
+
+    getDescriptions() {
+        return ['Наносит урон нескольким картам', ...super.getDescriptions()];
+    }
 }
 
 class Lad extends Dog {
     constructor(name = 'Браток', power = 2) {
-        super(name, power); 
+        super(name, power);
     }
 
     static getInGameCount() {
-        return this.inGameCount || 0; 
+        return this.inGameCount || 0;
     }
 
     static setInGameCount(value) {
@@ -130,6 +134,7 @@ class Lad extends Dog {
         super.doBeforeRemoving(continuation);
     }
 
+
     modifyDealedDamageToCreature(value, toCard, gameContext, continuation) {
         super.modifyDealedDamageToCreature(value + Lad.getBonus(), toCard, gameContext, continuation);
     }
@@ -137,22 +142,23 @@ class Lad extends Dog {
     modifyTakenDamage(value, fromCard, gameContext, continuation) {
         super.modifyTakenDamage(value - Lad.getBonus(), fromCard, gameContext, continuation);
     }
+
+    getDescriptions() {
+        return ['Чем больше на карте, тем больше урона и защиты', ...super.getDescriptions()];
+    }
 }
 
-// Колода Шерифа, нижнего игрока.
 const seriffStartDeck = [
-    new Duck('', 2),
-    new Duck('', 4),
-    new Gatling()
+    new Duck(),
+    new Lad(),
+    new Gatling(),
 ];
 
-// Колода Бандита, верхнего игрока.
 const banditStartDeck = [
-    new Lad(),
-    new Lad(),
-    new Lad()
+    new Trasher(),
+    new Dog(),
+    new Dog(),
 ];
-
 
 // Создание игры.
 const game = new Game(seriffStartDeck, banditStartDeck);
